@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div>
+  <div class="container">
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+          <h3 class="panel-title">新建管理员</h3>
+        </div>
+
+        <div class="panel-body">
+
+                <!--novalidate是关闭原本浏浪器做的校验-->
+<form method="post" novalidate >
+    {% csrf_token %}
+
+
+{% for fields in form %}
+<div class="form-group">
+<label class=" control-label">{{fields.label}}</label>
+{{fields}}
+<span style="color:red;"> {{fields.errors.0}}</span>
+
+<!--<input type="text" class="form-control" placeholder="姓名" name="user"> -->
+</div>
+
+{% endfor %}
+
+
+
+
+
+<button type="submit" class="btn btn-primary">保 存</button>
+
+</form>
+
+
+</div>
+
+</div>
+</div>
+</div>
+{% endblock %}

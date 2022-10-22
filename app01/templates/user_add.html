@@ -1,0 +1,93 @@
+<!--#此处使用了模板的继承，将layout模板作为继承对象，只需要修改不继承部门即可-->
+
+{% extends 'layout.html' %}
+<!--#以下部分是不继承layout，模板部分-->
+{% block content %}
+<div>
+  <div class="container">
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+          <h3 class="panel-title">新建用户</h3>
+        </div>
+
+        <div class="panel-body">
+
+
+              <form class="form-horizontal" method="post">
+                {% csrf_token %}
+  <div class="form-group">
+    <label  class="col-sm-2 control-label">姓名</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" placeholder="姓名" name="user">
+    </div>
+  </div>
+                  <div class="form-group">
+    <label  class="col-sm-2 control-label">密码</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" placeholder="密码" name="pwd">
+    </div>
+  </div>
+                  <div class="form-group">
+    <label  class="col-sm-2 control-label">年龄</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" placeholder="年龄" name="age">
+    </div>
+  </div>
+                  <div class="form-group">
+    <label  class="col-sm-2 control-label">余额</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" placeholder="余额" name="account">
+    </div>
+  </div>
+                  <div class="form-group">
+    <label  class="col-sm-2 control-label">入职时间</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" placeholder="入职时间" name="create_time">
+    </div>
+  </div>
+
+                  <div class="form-group">
+    <label  class="col-sm-2 control-label">所属部门</label>
+    <div class="col-sm-10">
+        <select class="form-control" name="depart_id">
+            {% for item in depart_list %}
+            <!--item.0与item.1在models.py中是以元组的方式，所以根据索引位置进行表示-->
+            <option value="{{item.id}}">{{item.title}}</option>
+
+            {% endfor %}
+
+        </select>
+    </div>
+  </div>
+
+
+                  <div class="form-group">
+    <label  class="col-sm-2 control-label">性别</label>
+    <div class="col-sm-10">
+        <select class="form-control" name="gender">
+            {% for item in gender_choices %}
+            <!--item.0与item.1在models.py中是以元组的方式，所以根据索引位置进行表示-->
+            <option value="{{item.0}}">{{item.1}}</option>
+            {% endfor %}
+        </select>
+    </div>
+  </div>
+
+
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary">保 存</button>
+    </div>
+  </div>
+</form>
+
+
+        </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

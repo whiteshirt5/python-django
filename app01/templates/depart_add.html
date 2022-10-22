@@ -1,0 +1,40 @@
+<!--#此处使用了模板的继承，将layout模板作为继承对象，只需要修改不继承部门即可-->
+
+{% extends 'layout.html' %}
+#以下部分是不继承layout，模板部分
+{% block content %}
+<div>
+  <div class="container">
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+          <h3 class="panel-title">新建部门</h3>
+        </div>
+
+        <div class="panel-body">
+
+
+              <form class="form-horizontal" method="post">
+                {% csrf_token %}
+  <div class="form-group">
+    <label  class="col-sm-2 control-label">标题</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" placeholder="标题" name="title">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary">保 存</button>
+    </div>
+  </div>
+</form>
+
+
+        </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends 'layout.html' %}
+{% block content %}
+ <div>
+    <div class="container">
+        <div style="margin-bottom: 10px">
+      <!--在a标签添加target="_blank"指的是当点击a标签跳转页面是在新页面打开-->
+              <a class="btn btn-success" href="/order_add/" >
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+               新建订单
+              </a>
+
+             <div style="float:right;width:300px;" >
+         <form method="get">
+                 <div class="input-group">
+
+      <input type="text"  name="q" class="form-control" placeholder="Search for..." value="{{search_data}}">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </button>
+      </span>
+
+            </div>
+                 </form>
+        </div>
+        </div>
+
+
+   <!--<div class="bs-example" data-example-id="panel-without-body-with-table"-->
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">
+
+          <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+
+        订单列表</div>
+
+
+
+      <!-- Table -->
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+
+            <th>ID</th>
+            <th>订单号</th>
+            <th>名称</th>
+              <th>价格</th>
+              <th>状态</th>
+              <th>管理员</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for obj in queryset %}
+            <tr>
+              <th>{{obj.id}}</th>
+              <td>{{obj.oid}}</td>
+                <td>{{obj.title}}</td>
+                <td>{{obj.price}}</td>
+                <td>{{obj.status}}</td>
+                <td>{{obj.admin}}</td>
+              <td>
+                  <!--编辑页面跳转到编辑页面保存保留原来数据时，可以通过正则表达式进行传参数，
+                  通过获取ID数据-->
+                <a class="btn btn-primary btn-xs" href="/order/{{obj.id}}/edit/">编辑</a>
+                <a class="btn btn-danger btn-xs" href="/order/{{obj.id}}/delete/">删除</a>
+              </td>
+
+            </tr>
+
+
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+         <nav aria-label="Page navigation">
+      <ul class="pagination">
+          <!--通过Django后天的循环实现分页功能-->
+          {{page_string}}
+
+
+      </ul>
+    </nav>
+  </div>
+
+  </div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
